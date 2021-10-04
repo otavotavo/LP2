@@ -131,30 +131,20 @@ class ListFrame extends JFrame {
 					int rCc= rand.nextInt(180);
 					int gCc= rand.nextInt(255);
 					int bCc= rand.nextInt(255);
-//					int x= 100;
-//					int y= 100;
-//					int w= 100;
-//					int h= 100;
-//					int rCf= 0;
-//					int gCf= 0;
-//					int bCf= 150;
-//					int rCc= 0;
-//					int gCc= 0;
-//					int bCc= 0;
+
 				if (evt.getKeyChar() == 'r'){
 					Rect r = new Rect(x,y,w,h, rCf,gCf,bCf, rCc,gCc,bCc);
 					figs.add(r);
 				}if(evt.getKeyChar() == 'e'){
 					figs.add(new Ellipse(x,y,w,h, rCf,gCf,bCf, rCc,gCc,bCc));
 				}if(evt.getKeyChar() == 't'){
-//					w=w+x;
-//					h=y+h;
+
 					Triangle tr= new Triangle(x,y,w,h, rCf,gCf,bCf, rCc,gCc,bCc);
 					figs.add(tr);
 				}if(evt.getKeyChar() == 's'){
 					int r= rand.nextInt(50);
 					r= x+r;
-//					r=r+(x/2);
+
 					h=y+h;
 					w= x+(2*(r-x));
 					figs.add(new Seta(r,x,y,w,h, rCf,gCf,bCf, rCc,gCc,bCc));
