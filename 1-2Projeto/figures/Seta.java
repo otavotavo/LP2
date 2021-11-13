@@ -71,28 +71,38 @@ public class Seta extends Figure {
 
     public void drag(int mouseX, int mouseY){
 
-	this.xPoints[0]= mouseX; 
-	this.xPoints[1]= mouseX+(this.w/2);
-	this.xPoints[2]= mouseX+this.w;
-	this.xPoints[3]= mouseX+(3*(this.w/4));
- 	this.xPoints[4]= mouseX+(3*(this.w/4)); 
-	this.xPoints[5]= mouseX+(this.w/4);
-	this.xPoints[6]= mouseX+(this.w/4);
+	this.xPoints[0]= (mouseX - this.distanciaX); 
+	this.xPoints[1]= (mouseX - this.distanciaX)+(this.w/2);
+	this.xPoints[2]= (mouseX - this.distanciaX)+this.w;
+	this.xPoints[3]= (mouseX - this.distanciaX)+(3*(this.w/4));
+ 	this.xPoints[4]= (mouseX - this.distanciaX)+(3*(this.w/4)); 
+	this.xPoints[5]= (mouseX - this.distanciaX)+(this.w/4);
+	this.xPoints[6]= (mouseX - this.distanciaX)+(this.w/4);
 
-	this.yPoints[0]= mouseY+(this.h/2);
- 	this.yPoints[1]= mouseY;
- 	this.yPoints[2]= mouseY+(this.h/2);
- 	this.yPoints[3]= mouseY+(this.h/2);
-	this.yPoints[4]= mouseY+ this.h;
- 	this.yPoints[5]= mouseY+this.h;
- 	this.yPoints[6]= mouseY+(this.h/2);
+	this.yPoints[0]= (mouseY - this.distanciaY)+(this.h/2);
+ 	this.yPoints[1]= (mouseY - this.distanciaY);
+ 	this.yPoints[2]= (mouseY - this.distanciaY)+(this.h/2);
+ 	this.yPoints[3]= (mouseY - this.distanciaY)+(this.h/2);
+	this.yPoints[4]= (mouseY - this.distanciaY)+ this.h;
+ 	this.yPoints[5]= (mouseY - this.distanciaY)+this.h;
+ 	this.yPoints[6]= (mouseY - this.distanciaY)+(this.h/2);
 
-	this.x=mouseX;
-	this.y=mouseY;
+	this.x=mouseX - this.distanciaX;
+	this.y=mouseY - this.distanciaY;
    };
 
 
-    public void paint (Graphics g) {
+    public void paint (Graphics g, boolean focused) {
+
+	Graphics2D g2d = (Graphics2D) g;
+	
+	int xPoints[] = {this.x, this.x+(this.w/2), this.x+this.w, this.x+(3*(this.w/4)), this.x+(3*(this.w/4)) ,
+	 this.x+(this.w/4) ,this.x+(this.w/4) };
+	
+
+	int yPoints[] = {this.y+(this.h/2), this.y, this.y+(this.h/2), this.y+(this.h/2) ,
+	 this.y+ this.h, this.h+this.y, this.y+(this.h/2) };
+
 	g.setColor(new Color(this.rCf, this.gCf,this.bCf));
 	g.fillPolygon( xPoints, yPoints, 7);
 	g.setColor(new Color(this.rCc,this.gCc,this.bCc));
@@ -103,7 +113,7 @@ public class Seta extends Figure {
 		g.setColor(Color.black);
 		g.drawRect((this.x + this.w) - (this.w/6),(this.y + this.h) - (this.h/6),this.w/6,this.h/6);
 	}
-	if( contorno_foco == true){
+	if (focused == true){
 		g.setColor(Color.red);
 		g.drawRect(this.x,this.y,this.w,this.h);
     }

@@ -27,8 +27,8 @@ public class Ellipse extends Figure{
     }
 
     public void drag(int mouseX, int mouseY){
-	this.x=mouseX;
-	this.y=mouseY;
+	this.x= mouseX - this.distanciaX;
+	this.y= mouseY - this.distanciaY;
    };
 
     public void resize(int new_w, int new_h){
@@ -44,7 +44,10 @@ public class Ellipse extends Figure{
 
 
 
-    public void paint (Graphics g) {
+    public void paint (Graphics g, boolean focused) {
+
+	
+
         Graphics2D g2d = (Graphics2D) g;
 	g.setColor(new Color(this.rCf, this.gCf,this.bCf));
 	g2d.fill(new Ellipse2D.Double(this.x,this.y, this.w,this.h));
@@ -56,7 +59,7 @@ public class Ellipse extends Figure{
 		g.setColor(Color.black);
 		g.drawRect((this.x + this.w) - (this.w/6),(this.y + this.h) - (this.h/6),this.w/6,this.h/6);
 	}
-	if( contorno_foco == true){
+	if (focused == true){
 		g.setColor(Color.red);
 		g.drawRect(this.x,this.y,this.w,this.h);
     }

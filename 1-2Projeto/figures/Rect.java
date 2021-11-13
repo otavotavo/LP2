@@ -26,22 +26,28 @@ public class Rect extends Figure {
 
 
     public void drag(int mouseX, int mouseY){
-	this.x=mouseX;
-	this.y=mouseY;
+	this.x=mouseX - this.distanciaX;
+	this.y=mouseY - this.distanciaY;
    };
 
 
 
     public void resize(int new_w, int new_h){
 	
+	if( new_w - this.x < 0 || new_h - this.y < 0){
+		System.out.format("menor q zero\n");
+	}else{
 	new_w = new_w - this.x;
 	new_h = new_h - this.y;
-
+	}
 	this.w= new_w;
 	this.h= new_h;
     };	
 
-    public void paint (Graphics g) {
+    public void paint (Graphics g, boolean focused) {
+
+	Graphics2D g2d = (Graphics2D) g;
+
 	g.setColor(new Color(this.rCf, this.gCf,this.bCf));
 	g.fillRect(this.x,this.y, this.w,this.h);
 	g.setColor(new Color(this.rCc,this.gCc,this.bCc));
@@ -53,7 +59,7 @@ public class Rect extends Figure {
 		g.drawRect((this.x + this.w) - (this.w/6),(this.y + this.h) - (this.h/6),this.w/6,this.h/6);
 	}
 
-	if( contorno_foco == true){
+	if (focused == true){
 		g.setColor(Color.red);
 		g.drawRect(this.x,this.y,this.w,this.h);
     }
